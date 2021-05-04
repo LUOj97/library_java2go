@@ -1,0 +1,1 @@
+module "library_java2go"
