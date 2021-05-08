@@ -1,8 +1,10 @@
 package main
 
-import "library_java2go/test"
+import "fmt"
 
 func main() {
-	word := "hello world"
-	test.Print(word)
+	s := make([]int, 0, 10)
+	s[0] = 1
+	fmt.Println(s[0])
+
 }
