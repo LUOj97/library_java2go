@@ -45,7 +45,6 @@ func TestAddWitHIndex(t *testing.T) {
 	s = make([]string, 10, 10)
 	//add a into s(slice)
 	s[2] = "two"
-
 	//test
 	if !reflect.DeepEqual(s[2], "two") {
 		t.Errorf("excepted:%v, got:%v", "two", s[2])
