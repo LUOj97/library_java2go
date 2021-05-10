@@ -2,16 +2,31 @@ package netme
 
 import "net"
 
-type InetAddress struct {
-	net.IP
-}
+type InetAddress []byte
 
 //getAddress()
-func (inetAddr InetAddress) GetAddress() InetAddress {
-	return inetAddr
+//func (inetAddr *InetAddress) GetAddress() net.IP {
+//	//return inetAddr.ip
+//
+//}
+
+//static
+//getAllByName(String host) , static InetAddress[]
+func GetAllByName(host string) ([]InetAddress, error) {
+	iprecords, _ := net.LookupIP(host)
+	ips := make([]InetAddress, len(iprecords))
+	for i, ip := range iprecords {
+		ipN := ip
+		ips[i] = InetAddress(ipN)
+	}
+	return ips, nil
 }
 
-//getAllByName(String host)
-func GetAllByName(addr string) (*net.IPAddr, error) {
-	return net.ResolveIPAddr("ip", addr)
-}
+//static
+//getByAddress(byte[] addr) ,static InetAddress
+
+//static
+//getByAddress(String host, byte[] addr),static InetAddress
+
+//static
+//getByName(String host) static InetAddress
