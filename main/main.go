@@ -1,10 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net"
+	"os"
+)
 
 func main() {
-	s := make([]int, 0, 10)
-	s[0] = 1
-	fmt.Println(s[0])
+	name, err := os.Hostname()
+	if err != nil {
+		fmt.Printf("Oops: %v\n", err)
+		return
+	}
 
+	addrs, err := net.LookupHost(name)
+	if err != nil {
+		fmt.Printf("Oops: %v\n", err)
+		return
+	}
+
+	for _, a := range addrs {
+		fmt.Println(a)
+	}
 }
