@@ -7,7 +7,7 @@ import (
 )
 
 type InetAddress struct {
-	ip   net.IP
+	Ip   net.IP
 	host string
 }
 
@@ -47,7 +47,7 @@ func GetByName(host string) (InetAddress, error) {
 
 //getHostAddress()
 func (ip *InetAddress) GetHostAddress() string {
-	return ip.ip.String()
+	return ip.Ip.String()
 }
 
 //getHostName()
@@ -146,5 +146,5 @@ func (ip InetAddress) IsMulticastAddres() bool {
 
 //toString()
 func (ip InetAddress) ToString() {
-	ip.ip.String()
+	ip.Ip.String()
 }
