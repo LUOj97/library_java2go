@@ -8,7 +8,7 @@ import (
 
 type InetAddress struct {
 	Ip   net.IP
-	host string
+	Host string
 }
 
 ////static
@@ -52,7 +52,7 @@ func (ip *InetAddress) GetHostAddress() string {
 
 //getHostName()
 func (ip *InetAddress) GetHostName() string {
-	return ip.host
+	return ip.Host
 }
 
 //static
