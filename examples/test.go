@@ -80,6 +80,7 @@ func sendMessage(conn *net.TCPConn) {
 		b, _ := codec.Encode(msg + "\n")
 		conn.Write(b)
 	}
+
 }
 
 func onMessageRecived(conn *net.TCPConn) {

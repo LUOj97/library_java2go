@@ -2,7 +2,7 @@ package TimeUnit
 
 import "time"
 
-type TimeUnit int64
+//type TimeUnit int64
 
 const (
 	NANOSECONDS  = time.Nanosecond

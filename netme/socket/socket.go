@@ -96,7 +96,6 @@ func (s *Socket) Connect(addr net.TCPAddr, timeout int64) {
 }
 
 //connect(SocketAddress endpoint, int timeout)
-// 不能传递其他参数
 func (s *Socket) ConnectWithTimeout(addr net.TCPAddr, timeout int64) {
 	var d net.Dialer
 	duration := time.Duration(timeout)
@@ -122,8 +121,17 @@ func (s *Socket) GetInetAddress() net.Addr {
 	return s.TcpConn.RemoteAddr()
 }
 
-//getInputStream() 类似于write
-//getKeepAlive() 没有提供这个方法
+//getInputStream()  write
+func (s *Socket) Write(b []byte) (int, error) {
+	return s.TcpConn.Write(b)
+}
+
+//getOutputStream()  read
+func (s *Socket) Read(b []byte) (int, error) {
+	return s.TcpConn.Read(b)
+}
+
+//getKeepAlive()
 
 //InetAddress	getLocalAddress() 需要修改
 func (s *Socket) GetLocalAddress() net.Addr {
@@ -140,7 +148,6 @@ func (s *Socket) GetLocalPort() int {
 //getLocalSocketAddress()
 
 //getOOBInline()
-//getOutputStream()  read
 
 //getPort()
 func (s *Socket) GetPort() int {
@@ -158,6 +165,7 @@ func (s *Socket) GetRemoteSocketAddress() net.Addr {
 }
 
 //getReuseAddress()
+
 //getSendBufferSize()
 //getSoLinger()
 //getSoTimeout()

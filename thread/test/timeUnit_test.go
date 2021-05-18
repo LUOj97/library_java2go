@@ -9,6 +9,7 @@ import (
 )
 
 func TestConvert(t *testing.T) {
+	//similar to TimeUnit.HOURS
 	x := TimeUnit.Convert(TimeUnit.HOURS, 100, TimeUnit.MINUTES)
 	fmt.Println(x)
 	Y := TimeUnit.Convert(TimeUnit.DAYS, 200, TimeUnit.MINUTES)

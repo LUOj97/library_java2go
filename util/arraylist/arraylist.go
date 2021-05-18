@@ -149,10 +149,17 @@ func (list *ArrayList) Contains(values interface{}) bool {
 }
 
 //ensureCapacity(int minCapacity)
-//实现
+func (list *ArrayList) EnsureCapacity(minCapacity int) {
+	if list.size <= minCapacity {
+		currentCapacity := cap(list.elements)
+		if currentCapacity < minCapacity {
+			list.growBy(len(list.elements), minCapacity)
+		}
+	}
+
+}
 
 //forEach(Consumer<? super E> action)
-//实现
 
 //get(int index)
 func (list *ArrayList) Get(index int) (interface{}, bool) {
@@ -183,7 +190,6 @@ func (list *ArrayList) IsEmpty() bool {
 }
 
 //iterator()
-//实现
 
 //lastIndexOf(Object o)
 func (list *ArrayList) LastIndexOf(value interface{}) int {
@@ -200,10 +206,8 @@ func (list *ArrayList) LastIndexOf(value interface{}) int {
 }
 
 //listIterator()
-//实现
 
 //listIterator(int index)
-//实现
 
 //remove(int index)
 func (list *ArrayList) RemoveWithIndex(index int) error {
@@ -230,10 +234,8 @@ func (list *ArrayList) RemoveWithObeject(object interface{}) bool {
 }
 
 //removeAll(Collection<?> c)
-//实现
 
 //removeIf(Predicate<? super E> filter)
-//实现
 
 //removeRange(int fromIndex, int toIndex)
 //this function is portected
@@ -248,10 +250,8 @@ func (list *ArrayList) RemoveWithObeject(object interface{}) bool {
 //}
 
 //replaceAll(UnaryOperator<E> operator)
-//实现
 
 //retainAll(Collection<?> c)
-//实现
 
 //set(int index, E element)
 func (list *ArrayList) Set(index int, object interface{}) interface{} {
@@ -279,7 +279,6 @@ func (list *ArrayList) Sort(comparator utils.Comparator) {
 }
 
 //spliterator()
-//实现
 
 //subList(int fromIndex, int toIndex)
 func (list *ArrayList) SubList(fromIndex, toIndex int) ArrayList {
@@ -303,7 +302,7 @@ func (list *ArrayList) ToArray() []interface{} {
 }
 
 //toArray(T[] a)
-//实现
+
 //trimToSize()
 func (list *ArrayList) TrimToSize() {
 	length := len(list.elements)

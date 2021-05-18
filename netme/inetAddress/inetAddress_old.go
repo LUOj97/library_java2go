@@ -32,9 +32,22 @@ func GetAllByName(host string) ([]InetAddress, error) {
 
 //static
 //getByAddress(byte[] addr) ,static InetAddress
+func GetByAddress(addr []byte) (*InetAddress, error) {
+	inetaddr := InetAddress{
+		Ip: addr,
+	}
+	return &inetaddr, nil
+}
 
 //static
 //getByAddress(String host, byte[] addr),static InetAddress
+func GetByAddressWithHost(host string, addr []byte) (*InetAddress, error) {
+	inetaddr := InetAddress{
+		Ip:   addr,
+		Host: host,
+	}
+	return &inetaddr, nil
+}
 
 //static
 //getByName(String host) static InetAddress

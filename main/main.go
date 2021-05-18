@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"library_java2go/main/codec"
+	"library_java2go/netme/serverSocket"
 	"net"
 )
 
@@ -67,23 +68,18 @@ import (
 var ConnMap map[string]*net.TCPConn
 
 func main() {
-	var tcpAddr *net.TCPAddr
+	//var tcpAddr *net.TCPAddr
 	ConnMap = make(map[string]*net.TCPConn) //初始化
-	tcpAddr, _ = net.ResolveTCPAddr("tcp", "localhost:9999")
-
-	tcpListener, _ := net.ListenTCP("tcp", tcpAddr) //开启tcp 服务
+	tcpListener, _ := serverSocket.NewWithPort(9999)
 	//退出时关闭
 	defer tcpListener.Close()
 	for {
-		tcpConn, err := tcpListener.AcceptTCP()
-		if err != nil {
-			continue
-		}
-		fmt.Println("A client connected : " + tcpConn.RemoteAddr().String())
+		tcpConn := tcpListener.Accept()
+		fmt.Println("A client connected : " + tcpConn.TcpConn.RemoteAddr().String())
 		// 新连接加入 map
-		ConnMap[tcpConn.RemoteAddr().String()] = tcpConn
+		ConnMap[tcpConn.TcpConn.RemoteAddr().String()] = tcpConn.TcpConn
 
-		go tcpPipe(tcpConn)
+		go tcpPipe(tcpConn.TcpConn)
 	}
 }
 
